@@ -13,6 +13,8 @@ import (
 
 // SetupLeftPane initializes the left panel with Status, Chats, and Groups
 func SetupLeftPane() *tview.Flex {
+	bg := tcell.ColorNames[config.Config.Colors.Background]
+
 	// 1. Status Section
 	ctx.StatusTable = tview.NewTable()
 	ctx.StatusTable.SetSelectable(true, false)
@@ -20,6 +22,7 @@ func SetupLeftPane() *tview.Flex {
 	ctx.StatusTable.SetTitle(" Status ")
 	ctx.StatusTable.SetTitleAlign(tview.AlignCenter)
 	ctx.StatusTable.SetBorderColor(tcell.ColorNames[config.Config.Colors.Borders])
+	ctx.StatusTable.SetBackgroundColor(bg)
 
 	// 2. Chats Section
 	ctx.ChatTable = tview.NewTable()
@@ -28,6 +31,7 @@ func SetupLeftPane() *tview.Flex {
 	ctx.ChatTable.SetTitle(" Chats ")
 	ctx.ChatTable.SetTitleAlign(tview.AlignCenter)
 	ctx.ChatTable.SetBorderColor(tcell.ColorNames[config.Config.Colors.Borders])
+	ctx.ChatTable.SetBackgroundColor(bg)
 
 	// 3. Groups Section
 	ctx.GroupTable = tview.NewTable()
@@ -36,6 +40,7 @@ func SetupLeftPane() *tview.Flex {
 	ctx.GroupTable.SetTitle(" Groups ")
 	ctx.GroupTable.SetTitleAlign(tview.AlignCenter)
 	ctx.GroupTable.SetBorderColor(tcell.ColorNames[config.Config.Colors.Borders])
+	ctx.GroupTable.SetBackgroundColor(bg)
 
 	// Helper to update focus appearance (mutually exclusive)
 	setActiveTable := func(active *tview.Table) {
@@ -148,6 +153,7 @@ func SetupLeftPane() *tview.Flex {
 	setActiveTable(nil)
 
 	ctx.LeftPane = tview.NewFlex().SetDirection(tview.FlexRow)
+	ctx.LeftPane.SetBackgroundColor(bg)
 	// Status: Border top + 1 row + Border bottom = 3 lines
 	ctx.LeftPane.AddItem(ctx.StatusTable, 3, 1, false)
 

@@ -43,6 +43,9 @@ func main() {
 
 	ctx.App = tview.NewApplication()
 
+	bgColor := tcell.ColorNames[config.Config.Colors.Background]
+	tview.Styles.PrimitiveBackgroundColor = bgColor
+
 	sideBarWidth := config.Config.Ui.ChatSidebarWidth
 	gridLayout := tview.NewGrid()
 	gridLayout.SetRows(1, 0, 1)
